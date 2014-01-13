@@ -31,8 +31,7 @@ public class ReadExample
 				// Loop through frames and look for minimum and maximum value
 				for (int s=0 ; s<framesRead * numChannels ; s++)
 				{
-					if (buffer[s] > max) max = buffer[s];
-					if (buffer[s] < min) min = buffer[s];
+					
 				}
 			}
 			while (framesRead != 0);
