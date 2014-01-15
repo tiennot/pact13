@@ -109,10 +109,6 @@ public static ArrayList<double[]> getData(String fileName){
 				series.add(new double[(int) wavFile.getNumFrames()]);
 				
 			}
-		   
-
-			// Display information about the wav file
-			wavFile.display();
 
 		
 			//Create a buffer of 100 frames * numChannels

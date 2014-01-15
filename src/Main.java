@@ -7,9 +7,7 @@ public class Main {
 		   
 		  ReadFile.readFile("data/B1.wav");
 		  //WriteExample.writeExample("data/test.wav");
-		   
-	  
-	  
+	
 	  }
 	   
  
