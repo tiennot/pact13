@@ -87,7 +87,7 @@ public final class ReadFile
 			  frame.setVisible(true);
 	}
 	
-public static ArrayList<double[]> getData(String fileName){
+public static TableAudio getData(String fileName){
 	
 	WavFile wavFile = null;
 	
@@ -141,6 +141,8 @@ public static ArrayList<double[]> getData(String fileName){
 			  
 		  	}
 		  	while (framesRead != 0);
+		  	
+		  	TableAudio tableAudio = new TableAudio(series, (int) wavFile.getSampleRate(), (int) wavFile.getValidBits(), (int) wavFile.getNumChannels());
 
 		  	// Close the wavFile
 		  	try  {wavFile.close();}
@@ -149,7 +151,7 @@ public static ArrayList<double[]> getData(String fileName){
 				
 				
 			}
-		  	return series;
+		  	return tableAudio;
 		  
 		
 	}
