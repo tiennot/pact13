@@ -40,8 +40,8 @@ public final class TableAudio {
 		FastFourierTransformer math = new FastFourierTransformer(DftNormalization.UNITARY);
 		XYSeries serie = this.audioData.getSeries(0);
 		XYSeries specSerie = new XYSeries("Spectrum");
-		double step = (double) sampleRate;
-		double x=0.;
+		//double step = (double) sampleRate;
+		//double x=0.;
 		int k = (int) Math.ceil(Math.log(serie.getItemCount())/Math.log(2));
 		
 		double[] data = new double[(int) Math.pow(2, k)];
@@ -50,8 +50,8 @@ public final class TableAudio {
 		}
 		
 		Complex[] cResult = math.transform(data, TransformType.FORWARD);
-		for(int i=0; i<cResult.length; i++, x+=step){
-			specSerie.add(x,cResult[i].abs());
+		for(int i=0; i<cResult.length; i++){
+			specSerie.add(i,cResult[i].abs());
 		}
 				
 		ReadFile.showGraph("Spectrum", new XYSeriesCollection(specSerie));
