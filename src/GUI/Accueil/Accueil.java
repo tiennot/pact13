@@ -37,6 +37,7 @@ public class Accueil extends Fenetre{
 	
 	public void refreshData(){
 		this.mainArea.refreshData();
+		this.repaint();
 	}
 	
 	public Utilisateurs getUtilisateurs(){
