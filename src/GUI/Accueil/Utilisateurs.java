@@ -53,7 +53,7 @@ public class Utilisateurs extends JPanel{
 		this.add(this.utilisateursContainer, BorderLayout.NORTH);
 		// Style
 		this.utilisateursContainer.setOpaque(false);
-		this.setBackground(Const.BLUE_LIGHT);
+		this.setBackground(Const.BLUE_ALPHA);
 	}
 	
 	//This method resets all utilisateurButtons
