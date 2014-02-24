@@ -1,18 +1,10 @@
 package Audio;
 
 import java.io.*;
-import java.util.ArrayList;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 public final class ReadFile {
 	
-	public static void fileDisplay(String fileName) {
+	/** public static void fileDisplay(String fileName) {
 		
 		WavFile wavFile = null;
 
@@ -82,7 +74,7 @@ public final class ReadFile {
 		ChartFrame frame = new ChartFrame("First", chart);
 		frame.pack();
 		frame.setVisible(true);
-	}
+	}*/
 
 	public static TableAudio getData(String fileName) {
 		
@@ -98,14 +90,14 @@ public final class ReadFile {
 		}
 		// Get the number of audio channels in the wav file
 		int numChannels = wavFile.getNumChannels();
-		double t = 0; // Curseur temporel
-		double T = 1 / (double) wavFile.getSampleRate(); // Période
-															// d'acquisition
+		int t = 0; // Curseur temporel
 
-		ArrayList<XYSeries> series = new ArrayList<XYSeries>(numChannels);
+		/*ArrayList<XYSeries> series = new ArrayList<XYSeries>(numChannels);
 		for (int i = 0; i < numChannels; i++) {
 			series.add(new XYSeries("Voie n°" + String.valueOf(i)));
-		}
+		}*/
+		
+		double[][] series = new double[numChannels][(int) wavFile.getNumFrames()]; 
 
 
 		// Create a buffer of 100 frames * numChannels
@@ -124,12 +116,14 @@ public final class ReadFile {
 			}
 
 			for (int s = 0; s < framesRead * wavFile.getNumChannels(); s += numChannels) {
+				
 				for (int i = 0; i < numChannels; i++) {
-					series.get(i).add(t, buffer[s + i]);
+					
+					series[i][t] = buffer[s + i];
 
 				}
 
-				t += T;
+				t ++;
 
 			}
 
@@ -142,14 +136,10 @@ public final class ReadFile {
 			e.printStackTrace();
 		}
 
-		XYSeriesCollection dataset = new XYSeriesCollection();
-		for (int i = 0; i < numChannels; i++) {
-			dataset.addSeries(series.get(i));
-		}
+		
 
-		TableAudio tableAudio = new TableAudio(dataset,
-				(int) wavFile.getSampleRate(), (int) wavFile.getValidBits(),
-				(int) wavFile.getNumChannels());
+		TableAudio tableAudio = new TableAudio(series[0],
+				(int) wavFile.getSampleRate(), (int) wavFile.getValidBits());
 
 		// Close the wavFile
 		try {
@@ -162,13 +152,6 @@ public final class ReadFile {
 
 	}
 	
-	public static void showGraph(String name, XYSeriesCollection data){
-		JFreeChart chart = ChartFactory.createXYLineChart(name, "temps",
-				"amplitude", data, PlotOrientation.VERTICAL, true, true,
-				false);
-		ChartFrame frame = new ChartFrame("PACT 1.3 Audio", chart);
-		frame.pack();
-		frame.setVisible(true);
-		
-	}
+	
+	 
 }

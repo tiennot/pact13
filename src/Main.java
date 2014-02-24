@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import Audio.*;
+import Display.GraphicDisplay;
 
 public class Main {
 
@@ -15,24 +16,27 @@ public class Main {
 			System.out.println("Choisissez votre mode :");
 			System.out.println("1.Lecture + Affichage");
 			System.out.println("2.Capture Audio");
-			System.out.println("3.Affichage Spectre");
 			choice = sc.nextInt();
 			sc.nextLine();
 			System.out.println("Nom du fichier");
 			fileName = sc.nextLine();
 			switch(choice){
 			case 1:
-				PlayAudio.playSound(fileName);
-				ReadFile.showGraph("Forme d'onde", ReadFile.getData(fileName).getAudioData());
+				
+				Analyse analyse = new Analyse(new TableAudio(fileName));
+				analyse.extinctionVoix();
+				analyse.detectionVoix();
+				System.out.println(analyse.getDebut());
+				System.out.println(analyse.getFin());
+				GraphicDisplay.showAudio(analyse.getTableAudio());
+				analyse.variationsAmplitude();
+				GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getVariations());
+
 				break;
 			case 2:
 				System.out.println("Durée d'enregistrement (en s) ?");
 				int time = sc.nextInt(); 
 				RecordAudio.recordAudio(fileName, time);
-				break;
-			case 3:
-				TableAudio tableAudio = ReadFile.getData(fileName);
-				tableAudio.showSpectrum();
 				break;
 			default:
 				System.out.println("Mauvais choix.");
