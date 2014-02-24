@@ -95,7 +95,7 @@ public class MainArea extends JPanel{
 		// Refreshes statistics
 		this.statsNiveau.setText("Niveau "+Window.USER.getNiveau());
 		this.statsTempsJeu.setText("Temps de jeu : "+Window.USER.getTempsJeu());
-		this.statsNbParties.setText("Parties jouées : "+Window.USER.getNbparties());
+		this.statsNbParties.setText("Parties jouÃ©es : "+Window.USER.getNbparties());
 		this.statsMeilleurScore.setText("Meilleur score : "+Window.USER.getMeilleurScore());
 		// Refreshes replay img
 		this.replayLabel.setIcon(new ImageIcon("data/GUI/user-replay-"+Window.USER.getId()+".jpg"));
