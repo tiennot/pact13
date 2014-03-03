@@ -33,6 +33,7 @@ public class Analyse {
 	public double getFin() {
 		return this.tEnd;
 	}
+
 	
 	public int getMaximum ()
 	{
@@ -151,6 +152,7 @@ public class Analyse {
 		
 		
 	}
+	
 	
 
 }
