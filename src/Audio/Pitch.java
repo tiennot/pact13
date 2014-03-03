@@ -16,6 +16,11 @@ public class Pitch {
 		this.jitter = d;
 	}
 	
+	public double getJitter()
+	{
+		return this.jitter;
+	}
+	
 	public Pitch( TableAudio audioFile){
 		
 		
@@ -44,6 +49,15 @@ public class Pitch {
 		
 		}
 		
+			}
+	
+	public double[] getF0(){
+		return this.F0;
+	}
+	
+	
+	public void Jitter()
+	{
 		double d = 0;
 		for (int i =1; i< F0.length-1; i=i+1)
 		{
@@ -51,15 +65,6 @@ public class Pitch {
 		}
 		
 		this.setJitter( d/(F0.length-1) );
-	}
-	
-	public double[] getF0(){
-		return this.F0;
-	}
-	
-	public void Jitter()
-	{
-		
 	}
 	
 }
