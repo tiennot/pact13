@@ -7,7 +7,6 @@ public class Analyse {
 	private double seuilDetection = 0.1;
 	private double tBegin;
 	private double tEnd;
-	private double[] ampDerivative;
 	
 	
 	public Analyse(TableAudio audioRef){
@@ -21,18 +20,12 @@ public class Analyse {
 	
 	
 	
-	public double[] getVariations(){
-		return this.ampDerivative;
-	}
 	
 	public void setDebut(int i) {
 		this.tBegin= (double) i/audioRef.getSampleRate();
 	}
 	public void setFin(int i) {
 		this.tEnd= (double) i/audioRef.getSampleRate();
-	}
-	public void setVariationsAmplitude(int i, double x) {
-		this.ampDerivative[i]= x;
 	}
 	public double getDebut() {
 		return this.tBegin;
@@ -89,14 +82,74 @@ public class Analyse {
 		}
 	}
 	
-	public void variationsAmplitude ()
+	public double[] variationsAmplitude ()
 	{
-		this.ampDerivative = new double[this.audioRef.getAudioData().length];
+		double[] ampDerivative = new double[this.audioRef.getAudioData().length];
+		
+		ampDerivative = new double[this.audioRef.getAudioData().length];
 		
 		for(int i=0; i<audioRef.getAudioData().length-1; i=i+1)
 		{
-			setVariationsAmplitude(i, (audioRef.getAudioData()[i+1]-audioRef.getAudioData()[i])*audioRef.getSampleRate());
+			ampDerivative[i] = (audioRef.getAudioData()[i+1]-audioRef.getAudioData()[i])*audioRef.getSampleRate();
 		}
+		
+		return ampDerivative;
+	}
+	
+	public double[] getEnergy() {
+		
+		double[] energy = new double[this.audioRef.getAudioData().length];
+		double moy=0;
+		
+		double[] amp = this.audioRef.getAudioData();
+		
+		for(int i =0; i<amp.length; i++){
+			amp[i] = amp[i]*amp[i];
+		}
+		
+		
+		
+		int n = 175; //nbre d'échantillon/2 sur lesquels est réalisée la moyenne
+		//double sup,inf;
+		
+		/*for(int i=0; i<energy.length; i++){
+			
+			moy = amp[i];
+			
+			for(int k=0; k<n; k++){
+				
+				sup = (i+n>=energy.length)? 0 : amp[i+n];
+				inf = (i-n>0)? amp[i-1-n] : 0;
+				
+				moy = moy + sup + inf;
+			}
+			
+			energy[i] = (double) moy/(2*n);
+		}*/
+		
+		
+		for(int i=0; i<=n; i++){
+			moy = moy + energy[i];
+		}
+		energy[0] = (double) moy/n;
+		
+		for(int i=1; i<energy.length-1; i++){
+			
+			double sup,inf;
+			
+			sup = (i+n>=amp.length)? 0 : amp[i+n];
+			inf = (i-n>0)? amp[i-1-n] : 0;
+			
+			moy = energy[i-1]*2*n + sup - inf;
+			energy[i] = (double) moy/(2*n);		
+			
+			
+		}
+		
+		return energy;
+		
+		
+		
 	}
 	
 

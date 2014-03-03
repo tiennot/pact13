@@ -28,9 +28,8 @@ public class Main {
 				analyse.detectionVoix();
 				System.out.println(analyse.getDebut());
 				System.out.println(analyse.getFin());
-				GraphicDisplay.showAudio(analyse.getTableAudio());
-				analyse.variationsAmplitude();
-				GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getVariations());
+				//GraphicDisplay.showAudio(analyse.getTableAudio());
+				GraphicDisplay.showGraph("Energie","Temps","Amplitude",analyse.getEnergy());
 
 				break;
 			case 2:
