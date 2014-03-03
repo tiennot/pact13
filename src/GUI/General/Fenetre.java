@@ -15,7 +15,7 @@ import GUI.Outils.Text;
 // This class doesn't represents a window, but what we called a fenetre : accueil, etc.s
 public class Fenetre extends JPanel{	
 	// Parent
-	Window window;
+	protected Window window;
 	// Background Image
 	private Image img;
 	

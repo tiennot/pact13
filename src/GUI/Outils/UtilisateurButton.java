@@ -51,10 +51,6 @@ public class UtilisateurButton extends JPanel implements MouseListener{
 		this.active = active;
 		if(active) this.setBackground(Const.BLUE_DARK);
 		else this.setBackground(Const.TRANSPARENT);
-		
-//		this.repaint();
-		
-		System.out.println(this);
 	}
 	
 	public void mouseClicked(MouseEvent event) {

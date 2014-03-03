@@ -2,6 +2,7 @@ package GUI.General;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 
@@ -14,6 +15,8 @@ public class Window extends JFrame{
 	// A Card Layout to manage fenetres
 	private CardLayout layout = new CardLayout();
 	private Accueil accueil;
+	// A list on the panels
+	private Hashtable<String, Fenetre> panels = new Hashtable<String, Fenetre>();
 	// An object of type utilisateurObj, which represents the current user
 	public static UtilisateurObj USER;
 	public void RefreshData(){
@@ -36,7 +39,8 @@ public class Window extends JFrame{
 		// Displays the main Window
 		this.setVisible(true);
 		// Minimal height and width
-		this.setMinimumSize(new Dimension(1070,500));
+		this.setSize(new Dimension(1070,500));
+		this.setResizable(false);
 		// Moves it to the center of the screen
 		this.setLocationRelativeTo(null);
 		// Exit command
@@ -47,9 +51,14 @@ public class Window extends JFrame{
 	
 	public void addFenetre(Fenetre fenetre, String name){
 		this.add(fenetre, name);
+		this.panels.put(name, fenetre);
 	}
 	
 	public void setFenetre(String name){
 		this.layout.show(this.getContentPane(), name);
+	}
+	
+	public Fenetre getFenetre(String name){
+		return this.panels.get(name);
 	}
 }

@@ -77,13 +77,13 @@ public class MainArea extends JPanel{
 		this.buttonsPanel.add(this.buttonsContainer, BorderLayout.WEST);
 		this.buttonsContainer.setLayout(new BoxLayout(this.buttonsContainer, BoxLayout.LINE_AXIS));
 		
-		this.buttonsContainer.add(new Square("auditorium.png"));
+		this.buttonsContainer.add(new Square("auditorium.png", window,"auditorium"));
 		this.buttonsContainer.add(new Spacer());
-		this.buttonsContainer.add(new Square("entretien.png"));
+		this.buttonsContainer.add(new Square("entretien.png", window, "accueil"));
 		this.buttonsContainer.add(new Spacer());
-		this.buttonsContainer.add(new Square("aide.png"));
+		this.buttonsContainer.add(new Square("aide.png", window, "accueil"));
 		this.buttonsContainer.add(new Spacer());
-		this.buttonsContainer.add(new Square("trophees.png"));
+		this.buttonsContainer.add(new Square("trophees.png", window, "accueil"));
 		this.buttonsPanel.setOpaque(false);
 		this.buttonsContainer.setOpaque(false);
 		this.buttonsPanel.setBorder(BorderFactory.createEmptyBorder(10, 36, 10, 10));

@@ -10,7 +10,7 @@ public class Text extends JLabel{
 	public Text(String string){
 		// Font & Color
 		this.setForeground(Color.white);
-		this.setFont(new Font("Calibri Light", 0, 28));
+		this.setFont(Const.font(28));
 		// Text-Align : center
 		this.setHorizontalAlignment(JLabel.CENTER);
 		// Creates the text
