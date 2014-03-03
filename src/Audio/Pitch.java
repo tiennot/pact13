@@ -11,6 +11,7 @@ public class Pitch {
 	private int fech;//frequence d'echantillonage
 	private double jitter;
 	
+	
 	public void setJitter(double d)
 	{
 		this.jitter = d;
@@ -19,6 +20,20 @@ public class Pitch {
 	public double getJitter()
 	{
 		return this.jitter;
+	}
+	
+	public void Jitter(double début, double fin)
+	{
+		double d = 0;
+		int débuttoint = (int)(fech*début);
+		int fintoint = (int)(fech*début);
+		
+		for (int i =débuttoint; i< fintoint; i=i+1)
+		{
+			d = d + Math.abs(1/F0[i]-1/F0[i+1]);
+		}
+		
+		this.setJitter( d/(débuttoint-fintoint) );
 	}
 	
 	public Pitch( TableAudio audioFile){
@@ -56,16 +71,6 @@ public class Pitch {
 	}
 	
 	
-	public void Jitter()
-	{
-		double d = 0;
-		for (int i =1; i< F0.length-1; i=i+1)
-		{
-			d = d + Math.abs(1/F0[i]-1/F0[i+1]);
-		}
-		
-		this.setJitter( d/(F0.length-1) );
-	}
 	
 }
 
