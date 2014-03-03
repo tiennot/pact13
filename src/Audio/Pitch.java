@@ -9,6 +9,12 @@ public class Pitch {
 	private double[] F0;
 	private int K; //K corespond au nombre de trame dans le discour
 	private int fech;//frequence d'echantillonage
+	private double jitter;
+	
+	public void setJitter(double d)
+	{
+		this.jitter = d;
+	}
 	
 	public Pitch( TableAudio audioFile){
 		
@@ -37,9 +43,25 @@ public class Pitch {
 			F0[i]=H;
 		
 		}
+		
+		double d = 0;
+		for (int i =1; i< F0.length-1; i=i+1)
+		{
+			d = d + Math.abs(1/F0[i]-1/F0[i+1]);
+		}
+		
+		this.setJitter( d/(F0.length-1) );
 	}
 	
 	public double[] getF0(){
 		return this.F0;
 	}
+	
+	public void Jitter()
+	{
+		
+	}
+	
 }
+
+

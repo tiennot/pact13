@@ -8,7 +8,7 @@ public class Analyse {
 	private double tBegin;
 	private double tEnd;
 	private double[] ampDerivative;
-	
+		
 	
 	public Analyse(TableAudio audioRef){
 		this.audioRef=audioRef;
@@ -40,6 +40,7 @@ public class Analyse {
 	public double getFin() {
 		return this.tEnd;
 	}
+
 	
 	public int getMaximum ()
 	{
@@ -97,7 +98,9 @@ public class Analyse {
 		{
 			setVariationsAmplitude(i, (audioRef.getAudioData()[i+1]-audioRef.getAudioData()[i])*audioRef.getSampleRate());
 		}
+		
 	}
+	
 	
 
 }
