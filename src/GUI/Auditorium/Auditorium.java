@@ -66,7 +66,7 @@ public class Auditorium extends Fenetre implements ActionListener{
 				this.stateText.setText("2");
 				this.stateText.setFont(Const.font(200));
 			}
-			if(this.time==-1){l
+			if(this.time==-1){
 				this.stateText.setText("1");
 				this.stateText.setFont(Const.font(250));
 			}
