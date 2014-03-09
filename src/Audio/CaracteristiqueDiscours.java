@@ -92,128 +92,129 @@ public class CaracteristiqueDiscours implements Serializable {
 		return S;
 	}
 	
-	public void appréciation(){
-		
+	public String appreciation(){
+		String toReturn = "";
 		if (this.getNumeroDiscours()==1){
 			if (this.longueurdiscours<11){
-				System.out.println("Votre débit est élevé");
+				toReturn += "Votre debit est eleve";
 			}
 			else if (this.longueurdiscours<15 && this.longueurdiscours>11){
-				System.out.println("Vote débit est correct");
+				toReturn += "Vote debit est correct";
 			}
 			else {
-				System.out.println("Votre débit est faible");
+				toReturn += "Votre debit est faible";
 			}
 			
 			if (this.ecarttypedepitch<40){
-				System.out.println("Votre discours est monotone");
+				toReturn += "Votre discours est monotone";
 			}
 			else if (this.ecarttypedepitch>40 && this.ecarttypedepitch<70){
-				System.out.println("Présence d'intonations, continuez");
+				toReturn += "Presence d'intonations, continuez";
 			}
 			else {
-				System.out.println("Vous avez réussi à mettre beaucoup d'intonations dans votre discours, attention à ne pas trop en faire non plus");
+				toReturn += "Vous avez reussi a mettre beaucoup d'intonations dans votre discours, attention a ne pas trop en faire non plus";
 			}
 			if (this.tempsdesilence < 1.8){
-				System.out.println("Vous marquez peu de pauses, pensez à marquer vos respirations");
+				toReturn += "Vous marquez peu de pauses, pensez a marquer vos respirations";
 			}
 			else if (this.tempsdesilence >2 && this.tempsdesilence<3){
-				System.out.println("Votre discours est ponctué par des pauses, continuez");
+				toReturn += "Votre discours est ponctue par des pauses, continuez";
 			}
 			else{
-				System.out.println("Votre discours est posé, mais attention à ne pas manquer de dynamisme");
+				toReturn += "Votre discours est pose, mais attention a ne pas manquer de dynamisme";
 			}
 		}
 		if (this.getNumeroDiscours()==2){
 			if (this.longueurdiscours<15){
-				System.out.println("Votre débit est élevé");
+				toReturn += "Votre debit est eleve";
 			}
 			else if (this.longueurdiscours<18 && this.longueurdiscours>15){
-				System.out.println("Vote débit est correct");
+				toReturn += "Vote debit est correct";
 			}
 			else {
-				System.out.println("Votre débit est faible");
+				toReturn += "Votre debit est faible";
 			}
 			
 			if (this.ecarttypedepitch<45){
-				System.out.println("Votre discours est monotone");
+				toReturn += "Votre discours est monotone";
 			}
 			else if (this.ecarttypedepitch>45 && this.ecarttypedepitch<75){
-				System.out.println("Présence d'intonations, continuez");
+				toReturn += "Presence d'intonations, continuez";
 			}
 			else {
-				System.out.println("Vous avez réussi à mettre beaucoup d'intonations dans votre discours, attention à ne pas trop en faire non plus");
+				toReturn +="Vous avez reussi a mettre beaucoup d'intonations dans votre discours, attention a ne pas trop en faire non plus";
 			}
 			if (this.tempsdesilence < 3.5){
-				System.out.println("Vous marquez peu de pauses, pensez à marquer vos respirations");
+				toReturn += "Vous marquez peu de pauses, pensez a marquer vos respirations";
 			}
 			else if (this.tempsdesilence >3.5 && this.tempsdesilence<5.5){
-				System.out.println("Votre discours est ponctué par des pauses, continuez");
+				toReturn += "Votre discours est ponctue par des pauses, continuez";
 			}
 			else{
-				System.out.println("Votre discours est posé, mais attention à ne pas manquer de dynamisme");
+				toReturn += "Votre discours est pose, mais attention a ne pas manquer de dynamisme";
 			}
 		}
 		if (this.getNumeroDiscours()==3){
 			if (this.longueurdiscours<15){
-				System.out.println("Votre débit est élevé");
+				toReturn +="Votre debit est eleve";
 			}
 			else if (this.longueurdiscours<15 && this.longueurdiscours>19){
-				System.out.println("Vote débit est correct");
+				toReturn +="Vote debit est correct";
 			}
 			else {
-				System.out.println("Votre débit est faible");
+				toReturn += "Votre debit est faible";
 			}
 			
 			if (this.ecarttypedepitch<46){
-				System.out.println("Votre discours est monotone");
+				toReturn += "Votre discours est monotone";
 			}
 			else if (this.ecarttypedepitch>46 && this.ecarttypedepitch<60){
-				System.out.println("Présence d'intonations, continuez");
+				toReturn += "Presence d'intonations, continuez";
 			}
 			else {
-				System.out.println("Vous avez réussi à mettre beaucoup d'intonations dans votre discours, attention à ne pas trop en faire non plus");
+				toReturn += "Vous avez reussi a� mettre beaucoup d'intonations dans votre discours, attention a ne pas trop en faire non plus";
 			}
 			if (this.tempsdesilence < 5.5){
-				System.out.println("Vous marquez peu de pauses, pensez à marquer vos respirations");
+				toReturn += "Vous marquez peu de pauses, pensez à marquer vos respirations";
 			}
 			else if (this.tempsdesilence >5.5 && this.tempsdesilence<9){
-				System.out.println("Votre discours est ponctué par des pauses, continuez");
+				toReturn += "Votre discours est ponctué par des pauses, continuez";
 			}
 			else{
-				System.out.println("Votre discours est posé, mais attention à ne pas manquer de dynamisme");
+				toReturn += "Votre discours est posé, mais attention à ne pas manquer de dynamisme";
 			}
 		}
 		if (this.getNumeroDiscours()==3){
 			if (this.longueurdiscours<13.5){
-				System.out.println("Votre débit est élevé");
+				toReturn += "Votre débit est élevé";
 			}
 			else if (this.longueurdiscours<13.5 && this.longueurdiscours>16){
-				System.out.println("Vote débit est correct");
+				toReturn += "Vote débit est correct";
 			}
 			else {
-				System.out.println("Votre débit est faible");
+				toReturn += "Votre débit est faible";
 			}
 			
 			if (this.ecarttypedepitch<54){
-				System.out.println("Votre discours est monotone");
+				toReturn += "Votre discours est monotone";
 			}
 			else if (this.ecarttypedepitch>54 && this.ecarttypedepitch<75){
-				System.out.println("Présence d'intonations, continuez");
+				toReturn += "Présence d'intonations, continuez";
 			}
 			else {
-				System.out.println("Vous avez réussi à mettre beaucoup d'intonations dans votre discours, attention à ne pas trop en faire non plus");
+				toReturn += "Vous avez réussi à mettre beaucoup d'intonations dans votre discours, attention à ne pas trop en faire non plus";
 			}
 			if (this.tempsdesilence < 4){
-				System.out.println("Vous marquez peu de pauses, pensez à marquer vos respirations");
+				toReturn += "Vous marquez peu de pauses, pensez à marquer vos respirations";
 			}
 			else if (this.tempsdesilence >4 && this.tempsdesilence<6){
-				System.out.println("Votre discours est ponctué par des pauses, continuez");
+				toReturn += "Votre discours est ponctué par des pauses, continuez";
 			}
 			else{
-				System.out.println("Votre discours est posé, mais attention à ne pas manquer de dynamisme");
+				toReturn += "Votre discours est posé, mais attention à ne pas manquer de dynamisme";
 			}
 		}
+		return toReturn;
 	}
 	
 	
