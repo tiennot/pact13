@@ -10,9 +10,9 @@ import java.io.*;
 	    TargetDataLine line;
 	 
 	    AudioFormat getAudioFormat() {
-	        float sampleRate = 16000;
-	        int sampleSizeInBits = 8;
-	        int channels = 2;
+	        float sampleRate = 44100;
+	        int sampleSizeInBits = 16;
+	        int channels = 1;
 	        boolean signed = true;
 	        boolean bigEndian = true;
 	        AudioFormat format = new AudioFormat(sampleRate, sampleSizeInBits,
