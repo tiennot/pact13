@@ -1,5 +1,7 @@
 package Audio;
 
+/* La table audio est constituee de tous les echantillons du signal */
+
 public final class TableAudio {
 	
 	private double[] audioData;
