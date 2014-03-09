@@ -1,15 +1,19 @@
 package Audio;
 
-public class CaracteristiqueDiscours {
+import java.io.Serializable;
+
+public class CaracteristiqueDiscours implements Serializable {
 	
+	private int numeroDiscours;
+	private static final long serialVersionUID = -5473442237557119527L;
 	private double moyennedepitch;
 	private double ecarttypedepitch;
 	private double longueurdiscours;
 	private double tempsdesilence;
 	
-	public CaracteristiqueDiscours ( TableAudio audioFile){
+	public CaracteristiqueDiscours ( TableAudio audioFile, int numeroDiscours){
 		
-		
+		this.numeroDiscours = numeroDiscours;
 		Analyse analyse = new Analyse(audioFile);
 		Pitch S = new Pitch(audioFile);
 		ecarttypedepitch=S.ecarttype();
@@ -34,8 +38,13 @@ public class CaracteristiqueDiscours {
 	}
 	
 	
-	//Getter
 	
+	
+	
+	//Getter
+	public int getNumeroDiscours(){
+		return this.numeroDiscours;
+	}
 	public double getmoyennedepitch(){
 		return moyennedepitch;
 	}

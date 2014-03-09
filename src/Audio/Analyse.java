@@ -56,6 +56,14 @@ public class Analyse {
 		}
 		return max;
 	}
+	
+	public int getMinimum(){
+		int min = 0;
+		for(int i =0; i<audioRef.getAudioData().length; i++){
+			min = (Math.abs(audioRef.getAudioData()[i]) < audioRef.getAudioData()[min])? i : min;
+		}
+		return min;
+	}
 		
 	public void detectionVoix ()
 	{

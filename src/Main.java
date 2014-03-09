@@ -1,3 +1,8 @@
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import Audio.*;
@@ -15,7 +20,7 @@ public class Main {
 			String fileName;
 			System.out.println("Choisissez votre mode :");
 			System.out.println("1.Lecture + Affichage");
-			System.out.println("2.Capture Audio");
+			System.out.println("2.Construction BDD");
 			choice = sc.nextInt();
 			sc.nextLine();
 			System.out.println("Nom du fichier");
@@ -23,7 +28,11 @@ public class Main {
 			switch(choice){
 			case 1:
 				
-				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(new TableAudio(fileName)); 
+				TableAudio tA = new TableAudio(fileName);
+				Analyse a = new Analyse(tA);
+				GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
+				
+				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(new TableAudio(fileName),1); 
 				System.out.println(carac.toString());
 				
 				
@@ -31,9 +40,38 @@ public class Main {
 
 				break;
 			case 2:
-				System.out.println("Durée d'enregistrement (en s) ?");
-				int time = sc.nextInt(); 
-				RecordAudio.recordAudio(fileName, time);
+				try{
+					FileOutputStream fout = new FileOutputStream("bdd/discours", true);
+					ObjectOutputStream oos = new ObjectOutputStream(fout);
+					oos.writeObject(new CaracteristiqueDiscours(new TableAudio(fileName),1));
+					oos.close();
+					System.out.println("Done");
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+				try{
+					FileInputStream fout = new FileInputStream("bdd/discours");
+					ObjectInputStream ois = new ObjectInputStream(fout);
+					CaracteristiqueDiscours c = (CaracteristiqueDiscours) ois.readObject();
+					while(true){
+						System.out.println(c.toString());
+						System.out.println("----------------");
+						try{
+							c = (CaracteristiqueDiscours) ois.readObject();
+						}
+						catch(EOFException e){
+							break;
+						}
+					}
+					ois.close();
+					System.out.println("Done");
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
 				break;
 			default:
 				System.out.println("Mauvais choix.");
