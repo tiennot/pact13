@@ -32,13 +32,14 @@ public class Main {
 				System.out.println("Nom du fichier");
 				fileName = sc.nextLine();
 				TableAudio tA = new TableAudio(fileName);
-				Analyse a = new Analyse(tA);
-				GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
 				
-				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(new TableAudio(fileName),1); 
+				//GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
+				
+				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(tA,1); 
 				System.out.println(carac.toString());
-				
-				
+				CaracList C= new CaracList();
+				CaracteristiqueDiscours V=C.discoursLePlusProche(tA, 1);
+				System.out.println(V.toString());
 				//GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getEnergy());
 
 				break;
@@ -70,6 +71,7 @@ public class Main {
 				}
 				break;
 			case 3:
+				ArrayList<CaracteristiqueDiscours> caracList= new ArrayList<CaracteristiqueDiscours>();
 				try{
 					FileInputStream fout = new FileInputStream("bdd/discours");
 					ObjectInputStream ois = new ObjectInputStream(fout);
@@ -78,7 +80,7 @@ public class Main {
 						System.out.println(c.toString());
 						System.out.println("----------------");
 						try{
-							c = (CaracteristiqueDiscours) ois.readObject();
+							caracList.add( (CaracteristiqueDiscours) ois.readObject());
 						}
 						catch(EOFException e){
 							break;

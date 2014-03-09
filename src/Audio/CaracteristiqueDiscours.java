@@ -28,13 +28,14 @@ public class CaracteristiqueDiscours implements Serializable {
 		tempsdesilence=u;
 		longueurdiscours= analyse.getFin() - analyse.getDebut();
 		
+		
 	}
 	
 	@Override
 	public String toString(){
 		return ("Moyenne du pitch =" + moyennedepitch + "\n Ecart type du pitch=" + ecarttypedepitch +
 				"\n Longueur du discours =" + longueurdiscours + "\n Temps des Silence =" + tempsdesilence +
-						"\n");
+						"\nIdentifiant " + numeroDiscours + "\n");
 	}
 	
 	
