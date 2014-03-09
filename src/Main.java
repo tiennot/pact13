@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Audio.*;
@@ -12,6 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		ArrayList<String> fileNames = new ArrayList<String>();
+		ArrayList<Integer> fileIds = new ArrayList<Integer>();
 
 		while(true){
 			
@@ -23,11 +26,11 @@ public class Main {
 			System.out.println("2.Construction BDD");
 			choice = sc.nextInt();
 			sc.nextLine();
-			System.out.println("Nom du fichier");
-			fileName = sc.nextLine();
+			
 			switch(choice){
 			case 1:
-				
+				System.out.println("Nom du fichier");
+				fileName = sc.nextLine();
 				TableAudio tA = new TableAudio(fileName);
 				Analyse a = new Analyse(tA);
 				GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
@@ -40,10 +43,25 @@ public class Main {
 
 				break;
 			case 2:
+				Integer n = new Integer(0);
+				while(true){
+					System.out.println("Nom du fichier");
+					fileName = sc.nextLine();
+					if(fileName.equals("0"))
+						break;
+					System.out.println("Identification");
+					n = sc.nextInt();
+					sc.nextLine();
+					fileNames.add(fileName);
+					fileIds.add(n);
+				}
+				
 				try{
-					FileOutputStream fout = new FileOutputStream("bdd/discours", true);
+					FileOutputStream fout = new FileOutputStream("bdd/discours");
 					ObjectOutputStream oos = new ObjectOutputStream(fout);
-					oos.writeObject(new CaracteristiqueDiscours(new TableAudio(fileName),1));
+					for(int i=0; i<fileNames.size(); i++){
+					oos.writeObject(new CaracteristiqueDiscours(new TableAudio(fileNames.get(i)),fileIds.get(i)));
+					}
 					oos.close();
 					System.out.println("Done");
 				}
