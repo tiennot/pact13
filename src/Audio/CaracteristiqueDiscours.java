@@ -29,6 +29,7 @@ public class CaracteristiqueDiscours implements Serializable {
 		tempsdesilence=u;
 		longueurdiscours= analyse.getFin() - analyse.getDebut();
 		
+		
 	}
 	
 	@Override

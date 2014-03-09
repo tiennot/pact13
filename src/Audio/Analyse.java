@@ -116,7 +116,7 @@ public class Analyse {
 	public void computeEnergy(){
 		
 		int n = 150; // 2*n = nombre de points sur lesquels on realise la moyenne
-		double[] data = this.audioRef.getAudioData();
+		double[] data = this.audioRef.getAudioData().clone();
 		this.energy = new double[data.length];
 		double sup=0;
 		double inf=0;
