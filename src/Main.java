@@ -30,11 +30,11 @@ public class Main {
 				
 				TableAudio tA = new TableAudio(fileName);
 				Analyse a = new Analyse(tA);
-				GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
+				//GraphicDisplay.showGraph("Energie", "Temps", "Log E", a.getEnergy());
 				
 				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(new TableAudio(fileName),1); 
 				System.out.println(carac.toString());
-				
+				carac.appréciation();
 				
 				//GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getEnergy());
 

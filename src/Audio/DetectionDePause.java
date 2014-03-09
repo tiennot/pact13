@@ -2,7 +2,7 @@ package Audio;
 
 public class DetectionDePause {
 	
-	private double seuil=0.1;
+	private double seuil=0.001;
 	private double tPauseMini = 0.20; //duree de silence pour une pause au minimum
 	private double [][] listedepause;
 	private static int freqEch;

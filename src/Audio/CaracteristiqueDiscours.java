@@ -10,6 +10,7 @@ public class CaracteristiqueDiscours implements Serializable {
 	private double ecarttypedepitch;
 	private double longueurdiscours;
 	private double tempsdesilence;
+
 	
 	public CaracteristiqueDiscours ( TableAudio audioFile, int numeroDiscours){
 		
@@ -32,8 +33,9 @@ public class CaracteristiqueDiscours implements Serializable {
 	
 	@Override
 	public String toString(){
+		
 		return ("Moyenne du pitch =" + moyennedepitch + "\n Ecart type du pitch=" + ecarttypedepitch +
-				"\n Longueur du discours =" + longueurdiscours + "\n Temps des Silence =" + tempsdesilence +
+				"\n Longueur du discours =" + longueurdiscours + "\n Temps des silences =" + tempsdesilence +
 						"\n");
 	}
 	
@@ -57,7 +59,10 @@ public class CaracteristiqueDiscours implements Serializable {
 	public double gettempsdesilence(){
 		return tempsdesilence;
 	}
-	
+	public void setNumerodiscours(int i){
+		this.numeroDiscours= i;
+	}
+
 	
 	
 	public double distance(CaracteristiqueDiscours discours){
@@ -84,6 +89,41 @@ public class CaracteristiqueDiscours implements Serializable {
 		
 		S=a+b+c+d;
 		return S;
+	}
+	
+	public void appréciation(){
+		
+		if (this.getNumeroDiscours()==1){
+			if (this.longueurdiscours<11){
+				System.out.println("Votre débit est élevé");
+			}
+			else if (this.longueurdiscours<15 && this.longueurdiscours>11){
+				System.out.println("Vote débit est correct");
+			}
+			else {
+				System.out.println("Votre débit est faible");
+			}
+			
+			if (this.ecarttypedepitch<40){
+				System.out.println("Votre discours est monotone");
+			}
+			else if (this.ecarttypedepitch>40 && this.ecarttypedepitch<70){
+				System.out.println("Présence d'intonations, continuez");
+			}
+			else {
+				System.out.println("Vous avez réussi à mettre beaucoup d'intonations dans votre discours");
+			}
+			if (this.tempsdesilence < 2){
+				System.out.println("Vous marquez peu de pauses, pensez à marquer vos respirations");
+			}
+			else if (this.tempsdesilence >2 && this.tempsdesilence<3){
+				System.out.println("Votre discours est ponctué par des pauses, continuez");
+			}
+			else{
+				System.out.println("Votre discours est posey");
+			}
+		}
+		
 	}
 
 }
