@@ -3,15 +3,15 @@ package Audio;
 
 public class Domaine {
 	
-	private int i;
-	private double[] trame;
-	private int N; // constant quelquesoit la trame
-	private double seuil=0.6;
-	private int fech;
+	private int i; //fixe le début de la copie
+	private double[] trame; // reçoit les points corespondant à 20ms
+	private final int N; // constant quelquesoit la trame
+	private double seuil=0.7; // seuil constant
+	private int fech; // frequence d'echantillonage
 	
 	public Domaine(int f, double [] dataDonne, int fech){
 		
-		this.fech =fech;
+		this.fech =fech; 
 		N = (int) fech/50;
 		trame = new double[N];
 		
@@ -22,7 +22,9 @@ public class Domaine {
 		
 	}
 	
-	public double fonctionDAutocorrelation(int j){
+	//Calcul des produits scalaires
+	
+	public double fonctionDAutocorrelation(int j){ 
 		double S=0;
 		double H=0;
 		for(int k=0; k<N-1-j;k++){
@@ -32,6 +34,8 @@ public class Domaine {
 		return S;
 	}
 	
+	//fonction minimun pour la prochaine methode
+	
 	public int min(int x, int y){
 		if (x<y){
 			return x;
@@ -39,29 +43,58 @@ public class Domaine {
 		return y;
 	}
 	
+	//fonction créant un seuil variable ( non intégré dans le code encore à cause d'un probleme non résolu)
+	
+	public double seuil(int k){
+		double s;
+		s=(double) (N-k) / (double) N;
+		return s;
+	}
+	
 	
 	public int frequenceFondamentale(){
-		// frï¿½quence d'ï¿½chantillonage 44100Hz
-		// une trame 88
-		// 400 Hz est la plus grande frï¿½quence on ne doit pas comparer deux max entre eux 
-		// un max significatif doit donc ï¿½tre plus grand que ses 9 voisin de gauche et de droite.
+		
 		
 		
 		double a=this.fonctionDAutocorrelation(0);
-		int dec = (int) (fech/400);
+		final int dec = (int) (fech/500);
 		int indicedumax;
 		int i =dec;
+		int C=0;
 		
-		while(this.fonctionDAutocorrelation(i)/a >seuil){
-				i=i+1;
-		}	
+		
+		
+		//assure que l etude commence quand la fonction atteint un minimun
+		//System.out.println(dec);
+		
+		while (C<dec-10||i>N){
+			for (int k=i-dec; k<i-10; k++){
+			
+				if((this.fonctionDAutocorrelation(k))/seuil(k)<(seuil*a)){
+					C=C+1;
+					
+				}
+				else{
+					C=0;
+					i=i+1;
+				}
+				if(i>N){
+					indicedumax=-1;
+					return indicedumax;
+				}
+			}
+			
+			
+		}
+		
+		//detecte le maximum
 		
 		while (i<N){
 			
 			
-			if (this.fonctionDAutocorrelation(i)/a > seuil){
+			if (this.fonctionDAutocorrelation(i) > seuil*a*seuil(i)){
 				
-				while (this.fonctionDAutocorrelation(i)<this.fonctionDAutocorrelation(i+1)){
+				while (this.fonctionDAutocorrelation(i)*seuil(i)<this.fonctionDAutocorrelation(i+1)*seuil(i+1)){
 					i=i+1;
 				}
 				
@@ -69,7 +102,7 @@ public class Domaine {
 				double max=this.fonctionDAutocorrelation(i);
 				
 				while (i<min(N,indicedumax+dec)){
-					if(max<fonctionDAutocorrelation(i)){
+					if(max*seuil(indicedumax)<fonctionDAutocorrelation(i)*seuil(i)){
 						indicedumax=i;
 						max=this.fonctionDAutocorrelation(i);
 					}

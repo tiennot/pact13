@@ -23,14 +23,11 @@ public class Main {
 			switch(choice){
 			case 1:
 				
-				Analyse analyse = new Analyse(new TableAudio(fileName));
-				analyse.extinctionVoix();
-				analyse.detectionVoix();
-				System.out.println(analyse.getDebut());
-				System.out.println(analyse.getFin());
-				GraphicDisplay.showAudio(analyse.getTableAudio());
-				analyse.variationsAmplitude();
-				GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getVariations());
+				CaracteristiqueDiscours carac = new CaracteristiqueDiscours(new TableAudio(fileName)); 
+				System.out.println(carac.toString());
+				
+				
+				//GraphicDisplay.showGraph("Variations","Temps","Amplitude",analyse.getEnergy());
 
 				break;
 			case 2:
