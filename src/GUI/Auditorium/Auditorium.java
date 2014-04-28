@@ -14,6 +14,7 @@ import Audio.CaracteristiqueDiscours;
 import Audio.RecordAudio;
 import Audio.RecordThread;
 import Audio.TableAudio;
+import Classification.Classif;
 import GUI.General.Fenetre;
 import GUI.General.Window;
 import GUI.Outils.Const;
@@ -90,10 +91,15 @@ public class Auditorium extends Fenetre implements ActionListener{
 		  this.centerContainer.removeAll();
 		  this.add(this.centerContainer, BorderLayout.CENTER);
 		  this.centerContainer.add(new Text("Appreciation du coach :"));
-		  CaracteristiqueDiscours cd =new CaracteristiqueDiscours( new TableAudio("data/audio"),1);
+		  CaracteristiqueDiscours cd =new CaracteristiqueDiscours( new TableAudio("data/audio.wav"),Auditorium.levelId);
 		  Text appreciation = new Text("<html><p>"+cd.appreciation()+"</p></html>");
 		  appreciation.setFont(Const.font(18));
 		  this.centerContainer.add(appreciation);
+		  // Results for classif kinect
+		  this.centerContainer.add(new Text("Appreciation Kinect :"));
+		  Text kinectAppreciation = new Text("<html><p>"+Classif.analyse()+"</p></html>");
+		  kinectAppreciation.setFont(Const.font(18));
+		  this.centerContainer.add(kinectAppreciation);
 		  // Updates current user data
 		  Window.USER().setNbparties(Window.USER().getNbparties()+1);
 		  Window.USERS.writeToFile();		  
@@ -111,7 +117,7 @@ public class Auditorium extends Fenetre implements ActionListener{
 				this.stateText.setText("Enregistrement en cours...");
 				this.stateText.setFont(Const.font(28));
 				// Starts recording
-				this.recordThread = new RecordThread("data/audio");
+				this.recordThread = new RecordThread("data/audio.wav");
 				this.recordThread.start();
 		}else{
 			if(this.time==-3){

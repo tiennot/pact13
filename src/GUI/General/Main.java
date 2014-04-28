@@ -2,6 +2,7 @@ package GUI.General;
 import java.awt.Font;
 import java.io.InputStream;
 
+import Classification.Classif;
 import GUI.Loading.Loading;
 import GUI.Outils.Info;
 import GUI.Utilisateurs.UtilisateursObj;
@@ -25,6 +26,8 @@ public class Main {
 		
 		// Font
 		
+		// Initializes the Kinect stuff
+		Classif.Init();
 		
 		// Creates all the fenetres
 		Accueil accueil = new Accueil(window);
