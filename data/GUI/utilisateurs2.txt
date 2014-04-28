@@ -1,0 +1,3 @@
+0 Bradley Cooper 14 275 50 78.9
+1 Keira Knightley 7 138 22 48.2
+2 Robert Downey 12 144 26 61.3

@@ -16,7 +16,7 @@ public class BackButton extends JPanel implements MouseListener{
 	private Window window;
 	// Reference to its parent auditorium
 	private Auditorium auditorium;
-	
+
 	public BackButton(Auditorium auditorium, Window window){
 		// Adds the text label to display
 		this.text.setFont(Const.font(20));
@@ -31,7 +31,8 @@ public class BackButton extends JPanel implements MouseListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		this.window.setFenetre("accueil");;
+		this.window.setFenetre("accueil");
+		this.window.getAccueil().refreshData();
 	}
 
 	public void mouseEntered(MouseEvent e) {

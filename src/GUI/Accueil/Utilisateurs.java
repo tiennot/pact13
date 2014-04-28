@@ -21,7 +21,7 @@ import GUI.Utilisateurs.UtilisateursObj;
 
 public class Utilisateurs extends JPanel{
 	private Window window;
-	private UtilisateursObj utilisateursObj = new UtilisateursObj();
+	//private UtilisateursObj utilisateursObj = new UtilisateursObj();
 	private JPanel utilisateursContainer = new JPanel();
 	private Title title = new Title("Utilisateurs");
 	private JPanel titlePanel = new JPanel();
@@ -40,12 +40,12 @@ public class Utilisateurs extends JPanel{
 		this.utilisateursContainer.add(this.titlePanel);
 		
 		// Adds some users. Should be done with the database
-		this.utilisateursObj.readFromFile();
+		Window.USERS.readFromFile();
 		
 		// Display users
-		int nbeUtilisateurs = this.utilisateursObj.getUtilisateurs().size();
+		int nbeUtilisateurs = Window.USERS.getUtilisateurs().size();
 		for(int i=0; i<nbeUtilisateurs; ++i){
-			UtilisateurObj utObj = this.utilisateursObj.getUtilisateurs().get(i);
+			UtilisateurObj utObj = Window.USERS.getUtilisateurs().get(i);
 			UtilisateurButton button = new UtilisateurButton(utObj, this.window);
 			this.utButtons.add(button);
 			this.utilisateursContainer.add(button);

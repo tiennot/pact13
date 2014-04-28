@@ -3,5 +3,10 @@
 	<classpathentry kind="src" path="data"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/cal/homes/tiennot/Downloads/jmf-2_1_1e-alljava.zip"/>
+	<classpathentry kind="lib" path="/cal/homes/tiennot/Downloads/JMF-2.1.1e/lib/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="/cal/homes/tiennot/Downloads/JMF-2.1.1e/lib/customizer.jar"/>
+	<classpathentry kind="lib" path="/cal/homes/tiennot/Downloads/JMF-2.1.1e/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="/cal/homes/tiennot/Downloads/JMF-2.1.1e/lib/multiplayer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

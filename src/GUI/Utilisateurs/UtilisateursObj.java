@@ -1,12 +1,19 @@
 package GUI.Utilisateurs;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import GUI.General.Window;
+import GUI.Outils.Info;
 
 // This class handles users : read from file, write to file, etc.
 public class UtilisateursObj {
@@ -58,4 +65,29 @@ public class UtilisateursObj {
 			e.printStackTrace();
 		}
 	}
+
+
+	public void writeToFile(){
+		File file = new File("data/GUI/utilisateurs.txt");
+		try {
+			PrintWriter writer = new PrintWriter(file);
+			for (UtilisateurObj utilisateur : this.utilisateurs) {
+				Info.echo(""+utilisateur.getMeilleurScore());
+				writer.println(
+						// Prints a line with all about an user
+						utilisateur.getId()+" "+
+						utilisateur.getPrenom()+" "+
+						utilisateur.getNom()+" "+
+						utilisateur.getNiveau()+" "+
+						utilisateur.getTempsJeu()+" "+
+						utilisateur.getNbparties()+" "+
+						utilisateur.getMeilleurScore());
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+			
 }

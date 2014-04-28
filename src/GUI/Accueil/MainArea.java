@@ -46,7 +46,7 @@ public class MainArea extends JPanel{
 		// Sets Layout
 		this.setLayout(new BorderLayout());
 		// The Title
-		this.title = new Title("Bienvenue "+Window.USER.getPrenom()+" !");
+		this.title = new Title("Bienvenue "+Window.USERS.getUtilisateurs().get(Window.USER).getPrenom()+" !");
 		this.add(this.titlePanel, BorderLayout.NORTH);
 		this.titlePanel.setOpaque(false);
 		this.titlePanel.add(this.title);
@@ -77,7 +77,7 @@ public class MainArea extends JPanel{
 		this.buttonsPanel.add(this.buttonsContainer, BorderLayout.WEST);
 		this.buttonsContainer.setLayout(new BoxLayout(this.buttonsContainer, BoxLayout.LINE_AXIS));
 		
-		this.buttonsContainer.add(new Square("auditorium.png", window,"auditorium"));
+		this.buttonsContainer.add(new Square("auditorium.png", window,"levelChoice"));
 		this.buttonsContainer.add(new Spacer());
 		this.buttonsContainer.add(new Square("entretien.png", window, "accueil"));
 		this.buttonsContainer.add(new Spacer());
@@ -90,15 +90,16 @@ public class MainArea extends JPanel{
 	}
 	
 	public void refreshData(){
+		Window.USERS.readFromFile();
 		// Refreshes title
-		this.getTitle().setText("Bienvenue "+Window.USER.getPrenom()+" !");
+		this.getTitle().setText("Bienvenue "+Window.USER().getPrenom()+" !");
 		// Refreshes statistics
-		this.statsNiveau.setText("Niveau "+Window.USER.getNiveau());
-		this.statsTempsJeu.setText("Temps de jeu : "+Window.USER.getTempsJeu());
-		this.statsNbParties.setText("Parties jouées : "+Window.USER.getNbparties());
-		this.statsMeilleurScore.setText("Meilleur score : "+Window.USER.getMeilleurScore());
+		this.statsNiveau.setText("Niveau "+Window.USERS.getUtilisateurs().get(Window.USER).getNiveau());
+		this.statsTempsJeu.setText("Temps de jeu : "+Window.USERS.getUtilisateurs().get(Window.USER).getTempsJeu());
+		this.statsNbParties.setText("Parties jouées : "+Window.USERS.getUtilisateurs().get(Window.USER).getNbparties());
+		this.statsMeilleurScore.setText("Meilleur score : "+Window.USERS.getUtilisateurs().get(Window.USER).getMeilleurScore());
 		// Refreshes replay img
-		this.replayLabel.setIcon(new ImageIcon("data/GUI/user-replay-"+Window.USER.getId()+".jpg"));
+		this.replayLabel.setIcon(new ImageIcon("data/GUI/user-replay-"+Window.USERS.getUtilisateurs().get(Window.USER).getId()+".jpg"));
 	}
 	
 	public Title getTitle(){

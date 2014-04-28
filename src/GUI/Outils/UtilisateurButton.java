@@ -54,7 +54,7 @@ public class UtilisateurButton extends JPanel implements MouseListener{
 	}
 	
 	public void mouseClicked(MouseEvent event) {
-		Window.USER = this.utilisateurObj;
+		Window.USER = this.utilisateurObj.getId();
 		this.window.RefreshData();
 		this.window.getAccueil().getUtilisateurs().resetUtilisateursButtons();
 		if(!this.active){

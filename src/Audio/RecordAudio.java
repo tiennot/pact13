@@ -62,27 +62,15 @@ import java.io.*;
 	    /**
 	     * Entry to run the program
 	     */
-	    public static void recordAudio(String fileName, int durationInSeconds) {
+	    /*public static RecordThread recordAudio(String fileName) {
 	        final RecordAudio recorder = new RecordAudio();
 	        wavFile = new File(fileName);
-	        recordTime = durationInSeconds * 1000;
 	 
 	        // creates a new thread that waits for a specified
 	        // of time before stopping
-	        Thread stopper = new Thread(new Runnable() {
-	            public void run() {
-	                try {
-	                    Thread.sleep(recordTime);
-	                } catch (InterruptedException ex) {
-	                    ex.printStackTrace();
-	                }
-	                recorder.finish();
-	            }
-	        });
-	 
-	        stopper.start();
-	 
+	        stopper.start();	 
 	        // start recording
-	        recorder.start();
-	    }
+	        
+	        return stopper;
+	    }*/
 	}

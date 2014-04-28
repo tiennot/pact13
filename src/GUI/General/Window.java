@@ -18,7 +18,14 @@ public class Window extends JFrame{
 	// A list on the panels
 	private Hashtable<String, Fenetre> panels = new Hashtable<String, Fenetre>();
 	// An object of type utilisateurObj, which represents the current user
-	public static UtilisateurObj USER;
+	public static UtilisateursObj USERS;
+	public static int USER; // The id of the current user
+	
+	// A method that returns the current user
+	public static UtilisateurObj USER(){
+		return USERS.getUtilisateurs().get(USER);
+	}
+	
 	public void RefreshData(){
 		this.accueil.refreshData();
 	}
@@ -31,16 +38,16 @@ public class Window extends JFrame{
 	
 	public Window(){
 		// Sets an user
-		UtilisateursObj utsObj = new UtilisateursObj();
-		utsObj.readFromFile();
-		Window.USER = utsObj.getUtilisateurs().get(0);
+		Window.USERS = new UtilisateursObj();
+		Window.USERS.readFromFile();
+		Window.USER = 0 ;
 		// Title of the main Window
 		this.setTitle("Coach Immersif");
 		// Displays the main Window
 		this.setVisible(true);
 		// Minimal height and width
 		this.setSize(new Dimension(1070,500));
-		this.setResizable(false);
+		this.setResizable(true);
 		// Moves it to the center of the screen
 		this.setLocationRelativeTo(null);
 		// Exit command
